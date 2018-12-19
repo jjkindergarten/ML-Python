@@ -1,0 +1,1126 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Project5.1}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    In the Lecture 5 folder find 4 related to a heart diseasedatabases
+(using class-lab5 start code)identify the best model to classify data
+(model can depend on a database). Justify your choice by comparing
+confusion matrices, ROC curves and AUC numbers.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib} 
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\end{Verbatim}
+
+
+     first let me introduce the function i created, which could be used
+frequently in the project.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{}based on statistical significant of diff attributes in trainset }
+        \PY{c+c1}{\PYZsh{}pick up number of attributes i want from both train set and test set}
+        \PY{k}{def} \PY{n+nf}{attribute\PYZus{}selection}\PY{p}{(}\PY{n}{trainset\PYZus{}variable}\PY{p}{,} \PY{n}{trainset\PYZus{}dependent\PYZus{}variable}\PY{p}{,} \PY{n}{number\PYZus{}of\PYZus{}attribute}\PY{p}{,} \PY{n}{testset\PYZus{}variable}\PY{p}{)}\PY{p}{:}
+            \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{feature\PYZus{}selection} \PY{k}{import} \PY{n}{RFE}
+            \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LogisticRegression}
+            \PY{n}{model} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} create the RFE model and select attributes}
+            \PY{n}{rfe} \PY{o}{=} \PY{n}{RFE}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{number\PYZus{}of\PYZus{}attribute}\PY{p}{)}
+            \PY{n}{rfe} \PY{o}{=} \PY{n}{rfe}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{trainset\PYZus{}variable}\PY{p}{,} \PY{n}{trainset\PYZus{}dependent\PYZus{}variable}\PY{p}{)}
+            \PY{n}{trian\PYZus{}variable\PYZus{}selection} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{n}{test\PYZus{}variable\PYZus{}selection} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{n}{train\PYZus{}variable\PYZus{}selection} \PY{o}{=} \PY{p}{[}\PY{n}{trainset\PYZus{}variable}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{rfe}\PY{o}{.}\PY{n}{support\PYZus{}}\PY{p}{)}\PY{p}{)} \PY{k}{if} \PY{n}{rfe}\PY{o}{.}\PY{n}{support\PYZus{}}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{k+kc}{True}\PY{p}{]}
+            \PY{n}{test\PYZus{}variable\PYZus{}selection} \PY{o}{=} \PY{p}{[}\PY{n}{testset\PYZus{}variable}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{rfe}\PY{o}{.}\PY{n}{support\PYZus{}}\PY{p}{)}\PY{p}{)} \PY{k}{if} \PY{n}{rfe}\PY{o}{.}\PY{n}{support\PYZus{}}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{k+kc}{True}\PY{p}{]}
+            \PY{k}{return} \PY{n}{train\PYZus{}variable\PYZus{}selection}\PY{p}{,} \PY{n}{test\PYZus{}variable\PYZus{}selection}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{}input the dataset and then outcome the result of prediction with each model}
+        \PY{c+c1}{\PYZsh{}the result follows the order: logistic regression, naive bayes alogrithm, knn, CART, SVM}
+        \PY{k}{def} \PY{n+nf}{modeling}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{train\PYZus{}label}\PY{p}{,} \PY{n}{test\PYZus{}data}\PY{p}{,} \PY{n}{test\PYZus{}label}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}logistic regression algorithm}
+            \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LogisticRegression}
+            \PY{n}{model\PYZus{}logistic} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{p}{)}
+            \PY{n}{model\PYZus{}logistic}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{train\PYZus{}label}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} make predictions}
+            \PY{n}{prediction\PYZus{}logistic} \PY{o}{=} \PY{n}{model\PYZus{}logistic}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+            \PY{n}{score\PYZus{}logistic} \PY{o}{=} \PY{n}{model\PYZus{}logistic}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+            \PY{n}{result\PYZus{}log} \PY{o}{=} \PY{p}{[}\PY{n}{prediction\PYZus{}logistic}\PY{p}{,} \PY{n}{score\PYZus{}logistic}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{}naive bayes}
+            \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{naive\PYZus{}bayes} \PY{k}{import} \PY{n}{GaussianNB}
+            \PY{n}{model\PYZus{}nb} \PY{o}{=} \PY{n}{GaussianNB}\PY{p}{(}\PY{p}{)}
+            \PY{n}{model\PYZus{}nb}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{train\PYZus{}label}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} make predictions}
+            \PY{n}{prediction\PYZus{}nb} \PY{o}{=} \PY{n}{model\PYZus{}nb}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+            \PY{n}{score\PYZus{}nb} \PY{o}{=} \PY{n}{model\PYZus{}logistic}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+            \PY{n}{result\PYZus{}nb} \PY{o}{=} \PY{p}{[}\PY{n}{prediction\PYZus{}nb}\PY{p}{,} \PY{n}{score\PYZus{}nb}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{}knn}
+            \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{neighbors} \PY{k}{import} \PY{n}{KNeighborsClassifier}
+            \PY{c+c1}{\PYZsh{} fit a k\PYZhy{}nearest neighbor model to the data}
+            \PY{n}{model\PYZus{}knn} \PY{o}{=} \PY{n}{KNeighborsClassifier}\PY{p}{(}\PY{p}{)}
+            \PY{n}{model\PYZus{}knn}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{train\PYZus{}label}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} make predictions}
+            \PY{n}{prediction\PYZus{}knn} \PY{o}{=} \PY{n}{model\PYZus{}knn}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+            \PY{n}{score\PYZus{}knn} \PY{o}{=} \PY{n}{model\PYZus{}knn}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+            \PY{n}{result\PYZus{}knn} \PY{o}{=} \PY{p}{[}\PY{n}{prediction\PYZus{}knn}\PY{p}{,} \PY{n}{score\PYZus{}knn}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{}CART}
+            \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{tree} \PY{k}{import} \PY{n}{DecisionTreeClassifier}
+            \PY{c+c1}{\PYZsh{} fit a CART model to the data}
+            \PY{n}{model\PYZus{}CART} \PY{o}{=} \PY{n}{DecisionTreeClassifier}\PY{p}{(}\PY{p}{)}
+            \PY{n}{model\PYZus{}CART}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{train\PYZus{}label}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} make predictions}
+            \PY{n}{prediction\PYZus{}CART} \PY{o}{=} \PY{n}{model\PYZus{}CART}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+            \PY{n}{score\PYZus{}CART} \PY{o}{=} \PY{n}{model\PYZus{}CART}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+            \PY{n}{result\PYZus{}cart} \PY{o}{=} \PY{p}{[}\PY{n}{prediction\PYZus{}CART}\PY{p}{,} \PY{n}{score\PYZus{}CART}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{}svm}
+            \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{svm} \PY{k}{import} \PY{n}{SVC}
+            \PY{c+c1}{\PYZsh{} fit a SVM model to the data}
+            \PY{n}{model\PYZus{}svc} \PY{o}{=} \PY{n}{SVC}\PY{p}{(}\PY{n}{probability}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+            \PY{n}{model\PYZus{}svc}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{train\PYZus{}label}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} make predictions}
+            \PY{n}{prediction\PYZus{}svc} \PY{o}{=} \PY{n}{model\PYZus{}svc}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+            \PY{n}{score\PYZus{}svc} \PY{o}{=} \PY{n}{model\PYZus{}svc}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+            \PY{n}{result\PYZus{}svm} \PY{o}{=} \PY{p}{[}\PY{n}{prediction\PYZus{}svc}\PY{p}{,} \PY{n}{score\PYZus{}svc}\PY{p}{]}
+            
+            \PY{k}{return} \PY{n}{result\PYZus{}log}\PY{p}{,} \PY{n}{result\PYZus{}nb}\PY{p}{,} \PY{n}{result\PYZus{}knn}\PY{p}{,} \PY{n}{result\PYZus{}cart}\PY{p}{,} \PY{n}{result\PYZus{}svm}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{}the fun sklearn give for get tpr and fpr for roc doesn\PYZsq{}t work well}
+        \PY{c+c1}{\PYZsh{}have to do it myself}
+        \PY{k}{def} \PY{n+nf}{roc}\PY{p}{(}\PY{n}{y\PYZus{}true}\PY{p}{,} \PY{n}{y\PYZus{}score}\PY{p}{)}\PY{p}{:}
+            \PY{n}{tpr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y\PYZus{}true}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{2}\PY{p}{)}
+            \PY{n}{fpr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y\PYZus{}true}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{2}\PY{p}{)}
+            \PY{n}{count} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{y\PYZus{}score}\PY{p}{,} \PY{n+nb}{max}\PY{p}{(}\PY{n}{y\PYZus{}score}\PY{p}{)}\PY{o}{+}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{)}
+            \PY{n}{count} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{count}\PY{p}{,} \PY{n+nb}{min}\PY{p}{(}\PY{n}{y\PYZus{}score}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{)}
+            \PY{n}{count} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{n}{count}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{count}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{n}{decision} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y\PYZus{}score}\PY{p}{)}\PY{p}{)}
+                \PY{n}{tp} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{n}{tn} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{n}{fp} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{n}{fn} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y\PYZus{}score}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                    \PY{k}{if} \PY{p}{(}\PY{n}{y\PYZus{}score}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{count}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                        \PY{n}{decision}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+                    \PY{k}{else}\PY{p}{:}
+                        \PY{n}{decision}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{k}{for} \PY{n}{m} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{decision}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                    \PY{k}{if} \PY{n}{decision}\PY{p}{[}\PY{n}{m}\PY{p}{]} \PY{o}{==} \PY{n}{y\PYZus{}true}\PY{p}{[}\PY{n}{m}\PY{p}{]} \PY{o+ow}{and} \PY{n}{decision}\PY{p}{[}\PY{n}{m}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                        \PY{n}{tp} \PY{o}{=} \PY{n}{tp} \PY{o}{+} \PY{l+m+mi}{1}
+                    \PY{k}{else}\PY{p}{:}
+                        \PY{k}{if} \PY{n}{decision}\PY{p}{[}\PY{n}{m}\PY{p}{]} \PY{o}{==} \PY{n}{y\PYZus{}true}\PY{p}{[}\PY{n}{m}\PY{p}{]} \PY{o+ow}{and} \PY{n}{decision}\PY{p}{[}\PY{n}{m}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                            \PY{n}{tn} \PY{o}{=} \PY{n}{tn} \PY{o}{+} \PY{l+m+mi}{1}
+                        \PY{k}{else}\PY{p}{:}
+                            \PY{k}{if} \PY{n}{decision}\PY{p}{[}\PY{n}{m}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                                \PY{n}{fp} \PY{o}{=} \PY{n}{fp} \PY{o}{+}\PY{l+m+mi}{1}
+                            \PY{k}{else}\PY{p}{:}
+                                \PY{n}{fn} \PY{o}{=} \PY{n}{fn} \PY{o}{+}\PY{l+m+mi}{1}
+                \PY{n}{tpr}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{tp}\PY{o}{/}\PY{p}{(}\PY{n}{tp} \PY{o}{+} \PY{n}{fn}\PY{p}{)}
+                \PY{n}{fpr}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{fp}\PY{o}{/}\PY{p}{(}\PY{n}{fp} \PY{o}{+} \PY{n}{tn}\PY{p}{)}
+            \PY{k}{return}\PY{p}{(}\PY{n}{fpr}\PY{p}{,} \PY{n}{tpr}\PY{p}{)} 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{}function for ploting the ROC curve}
+        \PY{k}{def} \PY{n+nf}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{label}\PY{p}{,} \PY{n}{y\PYZus{}score}\PY{p}{,}\PY{p}{)}\PY{p}{:}
+            \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{roc\PYZus{}curve}
+            \PY{n}{fpr}\PY{p}{,} \PY{n}{tpr} \PY{o}{=} \PY{n}{roc}\PY{p}{(}\PY{n}{label}\PY{p}{,} \PY{n}{y\PYZus{}score}\PY{p}{)}
+            
+            \PY{n}{co\PYZus{}ft} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{(}\PY{n}{fpr}\PY{p}{,} \PY{n}{tpr}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{n}{co\PYZus{}ft} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{co\PYZus{}ft}\PY{p}{,} \PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{co\PYZus{}ft}\PY{p}{:} \PY{n}{co\PYZus{}ft}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+            \PY{n}{co\PYZus{}ft} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{co\PYZus{}ft}\PY{p}{,} \PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{co\PYZus{}ft}\PY{p}{:} \PY{n}{co\PYZus{}ft}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+            \PY{n}{fpr1}\PY{p}{,}\PY{n}{tpr1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{hsplit}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{co\PYZus{}ft}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{fpr1}\PY{p}{,} \PY{n}{tpr1}\PY{p}{,} \PY{n}{linewidth} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{k+kc}{None}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.01}\PY{p}{,}\PY{l+m+mf}{1.01}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.01}\PY{p}{,}\PY{l+m+mf}{1.01}\PY{p}{]}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{False Positive Rate}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{True Positive Rate}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}attribute the result of auc }
+            \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{roc\PYZus{}auc\PYZus{}score}
+            \PY{n}{auc} \PY{o}{=} \PY{n}{roc\PYZus{}auc\PYZus{}score}\PY{p}{(}\PY{n}{label}\PY{p}{,} \PY{n}{y\PYZus{}score}\PY{p}{)}
+            \PY{n}{text} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auc equals to }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n+nb}{round}\PY{p}{(}\PY{n}{auc}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n}{text}\PY{p}{)}
+\end{Verbatim}
+
+
+    \section{part1 let's first model the small
+dataset}\label{part1-lets-first-model-the-small-dataset}
+
+    here i could use cleveland dataset as train dataset and use hungarian
+dataset as test dataset. Before modeling, i could standardize the data
+first.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{data\PYZus{}cleveland} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}table}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cleveland\PYZhy{}heart.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{sep} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{data\PYZus{}hungarian} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}table}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hungarian\PYZhy{}heart.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{sep} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{}i delete the row tha has \PYZsq{}?\PYZsq{}}
+        \PY{n}{data\PYZus{}cleveland} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{data\PYZus{}cleveland}\PY{p}{)}
+        \PY{n}{data\PYZus{}hungarian} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{data\PYZus{}hungarian}\PY{p}{)}
+        \PY{n}{data\PYZus{}hungarian} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{data\PYZus{}hungarian}\PY{p}{,} \PY{l+m+mi}{294}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{)}\PY{p}{:}
+            \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{k}{while} \PY{n}{j} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}cleveland}\PY{p}{)}\PY{p}{:}
+                \PY{k}{if} \PY{n}{data\PYZus{}cleveland}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{?}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:}
+                    \PY{n}{data\PYZus{}cleveland} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{data\PYZus{}cleveland}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+                \PY{n}{j} \PY{o}{=} \PY{n}{j} \PY{o}{+} \PY{l+m+mi}{1}
+                
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{)}\PY{p}{:}
+            \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{k}{while} \PY{n}{j} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}hungarian}\PY{p}{)}\PY{p}{:}
+                \PY{k}{if} \PY{n}{data\PYZus{}hungarian}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{?}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:}
+                    \PY{n}{data\PYZus{}hungarian} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{data\PYZus{}hungarian}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+                \PY{n}{j} \PY{o}{=} \PY{n}{j} \PY{o}{+} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{data\PYZus{}hungarian}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} (295, 14)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{}separate the variable and label}
+        \PY{n}{X\PYZus{}cleveland} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asanyarray}\PY{p}{(}\PY{n}{data\PYZus{}cleveland}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{12}\PY{p}{]}
+        \PY{n}{y\PYZus{}cleveland} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asanyarray}\PY{p}{(}\PY{n}{data\PYZus{}cleveland}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{13}\PY{p}{]}
+        
+        \PY{n}{X\PYZus{}hungarian} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asanyarray}\PY{p}{(}\PY{n}{data\PYZus{}hungarian}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{12}\PY{p}{]}
+        \PY{n}{y\PYZus{}hungarian} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asanyarray}\PY{p}{(}\PY{n}{data\PYZus{}hungarian}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{13}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{y\PYZus{}cleveland} \PY{o}{=} \PY{n}{y\PYZus{}cleveland}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{int}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{y\PYZus{}hungarian} \PY{o}{=} \PY{n}{y\PYZus{}hungarian}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{int}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{X\PYZus{}cleveland} \PY{o}{=} \PY{n}{X\PYZus{}cleveland}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{X\PYZus{}hungarian} \PY{o}{=} \PY{n}{X\PYZus{}hungarian}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{preprocessing}
+        
+        \PY{c+c1}{\PYZsh{} standardize the data attributes}
+        \PY{n}{X\PYZus{}cleveland} \PY{o}{=} \PY{n}{preprocessing}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{n}{X\PYZus{}cleveland}\PY{p}{)}
+        \PY{n}{X\PYZus{}hungarian} \PY{o}{=} \PY{n}{preprocessing}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{n}{X\PYZus{}hungarian}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{}modeling}
+         \PY{n}{result\PYZus{}log}\PY{p}{,} \PY{n}{result\PYZus{}nb}\PY{p}{,} \PY{n}{result\PYZus{}knn}\PY{p}{,} \PY{n}{result\PYZus{}cart}\PY{p}{,} \PY{n}{result\PYZus{}svm} \PY{o}{=} \PY{n}{modeling}\PY{p}{(}\PY{n}{X\PYZus{}cleveland}\PY{p}{,}\PY{n}{y\PYZus{}cleveland}\PY{p}{,} \PY{n}{X\PYZus{}hungarian}\PY{p}{,}\PY{n}{y\PYZus{}hungarian}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{}the confusion matrix of diff model}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{metrics}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}hungarian}\PY{p}{,} \PY{n}{result\PYZus{}log}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}hungarian}\PY{p}{,} \PY{n}{result\PYZus{}nb}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}hungarian}\PY{p}{,} \PY{n}{result\PYZus{}knn}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}hungarian}\PY{p}{,} \PY{n}{result\PYZus{}cart}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}hungarian}\PY{p}{,} \PY{n}{result\PYZus{}svm}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[170  13   2   3   0]
+ [ 19   5   8   5   0]
+ [  9   5  10   2   0]
+ [  7   6  10   5   0]
+ [  2   3   7   3   0]]
+[[158  16   8   2   4]
+ [ 15   9   8   4   1]
+ [  6   6   9   5   0]
+ [  6   5   9   4   4]
+ [  1   2   5   5   2]]
+[[172  14   2   0   0]
+ [ 17  11   6   2   1]
+ [  7  12   3   4   0]
+ [  7  11   6   2   2]
+ [  2   5   7   1   0]]
+[[114  33  27  12   2]
+ [  7  14  11   5   0]
+ [  4   8   9   3   2]
+ [  3   9  11   4   1]
+ [  2   0   8   5   0]]
+[[174  10   3   1   0]
+ [ 23   5   8   1   0]
+ [  8   5  10   3   0]
+ [  8   4  11   5   0]
+ [  3   2   8   2   0]]
+
+    \end{Verbatim}
+
+     the confusion matrix of each matrix looks good. The prediction can
+cover all states of heart disease. I think, CART is worse than other,
+since its preidction accuracy on state '0' is not high and lots of wrong
+prediction on other state. SVM and Logistic works pretty well, though
+none of them can predict the state '4'
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{}to draw the roc curve, let\PYZsq{}s separate the prediction into two category, one is range from 0 to 2, representing }
+         \PY{c+c1}{\PYZsh{}no or light heart disease; 3 and 4 are in another catergory representing heart disease}
+         \PY{n}{log\PYZus{}score} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{result\PYZus{}log}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{nb\PYZus{}score} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{result\PYZus{}nb}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{knn\PYZus{}score} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{result\PYZus{}knn}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{cart\PYZus{}score} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{result\PYZus{}cart}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{svm\PYZus{}score} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{result\PYZus{}svm}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{}also need to modify the label, 0\PYZti{}2 is negative while 3\PYZti{}4 is positive}
+         \PY{n}{roc\PYZus{}y\PYZus{}hungarian} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y\PYZus{}hungarian}\PY{p}{)}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y\PYZus{}hungarian}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{y\PYZus{}hungarian}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0} \PY{o+ow}{or} \PY{n}{y\PYZus{}hungarian}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1} \PY{o+ow}{or} \PY{n}{y\PYZus{}hungarian}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{2}\PY{p}{:}
+                 \PY{n}{roc\PYZus{}y\PYZus{}hungarian}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{roc\PYZus{}y\PYZus{}hungarian}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+                 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{}the roc is on the top\PYZhy{}left corner}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{num}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{model\PYZus{}comparasion}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{18}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{321}\PY{p}{)}
+         \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{roc\PYZus{}y\PYZus{}hungarian}\PY{p}{,} \PY{n}{log\PYZus{}score}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{322}\PY{p}{)}
+         \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{roc\PYZus{}y\PYZus{}hungarian}\PY{p}{,} \PY{n}{nb\PYZus{}score}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{323}\PY{p}{)}
+         \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{roc\PYZus{}y\PYZus{}hungarian}\PY{p}{,} \PY{n}{knn\PYZus{}score}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{324}\PY{p}{)}
+         \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{roc\PYZus{}y\PYZus{}hungarian}\PY{p}{,} \PY{n}{cart\PYZus{}score}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{325}\PY{p}{)}
+         \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{roc\PYZus{}y\PYZus{}hungarian}\PY{p}{,} \PY{n}{svm\PYZus{}score}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}sth strange happen to svm\PYZus{}roc}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+     as we can see from the table, with auc on the top, svm fits the data
+best while CART model is the worst. I think, at least for the small
+dataset, use SVM is a better choice.
+
+    \section{PART 2 let's model the big data
+set}\label{part-2-lets-model-the-big-data-set}
+
+    here i could use the data of longbeach as train set and use data of
+switzerland as test data. data is cleaned by Mac.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{data\PYZus{}switzerland} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}table}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{full\PYZhy{}switzerland\PYZhy{}heart\PYZhy{}edited.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{sep} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{data\PYZus{}longbeach} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}table}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{full\PYZhy{}long\PYZhy{}beach\PYZhy{}heart\PYZhy{}edited.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{sep} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    Though the data is cleaned once, here i clean it again. I drop the last
+col, which is the 'name'. Also, i delete the col whose nan is more than
+25\% of the total value. For the col left, i use the median value of
+each col to fill the nan value.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{}separate the label and the variable}
+         \PY{k}{del}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{[}\PY{l+m+mi}{75}\PY{p}{]}\PY{p}{)}
+         \PY{k}{del}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{[}\PY{l+m+mi}{75}\PY{p}{]}\PY{p}{)}
+         \PY{n}{y\PYZus{}longbeach} \PY{o}{=} \PY{n}{data\PYZus{}longbeach}\PY{p}{[}\PY{l+m+mi}{57}\PY{p}{]}
+         \PY{n}{y\PYZus{}switzerland} \PY{o}{=} \PY{n}{data\PYZus{}switzerland}\PY{p}{[}\PY{l+m+mi}{57}\PY{p}{]}
+         \PY{k}{del}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{[}\PY{l+m+mi}{57}\PY{p}{]}\PY{p}{)}
+         \PY{k}{del}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{[}\PY{l+m+mi}{57}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{data\PYZus{}longbeach} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{)}
+         \PY{n}{data\PYZus{}switzerland} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{}i delete the row tha has more than 20\PYZpc{} \PYZsq{}\PYZhy{}9\PYZsq{}, which means neither the train set or the test set, }
+         \PY{c+c1}{\PYZsh{}col in one of them miss 20\PYZpc{} data, i delete.}
+         \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{k}{while} \PY{n}{j} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+             \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n+nb}{float}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{o}{\PYZhy{}}\PY{l+m+mf}{9.0}\PY{p}{:}
+                     \PY{n}{count} \PY{o}{=} \PY{n}{count} \PY{o}{+} \PY{l+m+mi}{1}
+             \PY{k}{if} \PY{n}{count} \PY{o}{\PYZgt{}} \PY{o}{.}\PY{l+m+mi}{2}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{data\PYZus{}longbeach} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+                 \PY{n}{data\PYZus{}switzerland} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+                 \PY{n}{j} \PY{o}{=} \PY{n}{j}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+             \PY{n}{j} \PY{o}{=} \PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}
+         
+         \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{k}{while} \PY{n}{j} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+             \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n+nb}{float}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{o}{\PYZhy{}}\PY{l+m+mf}{9.0}\PY{p}{:}
+                     \PY{n}{count} \PY{o}{=} \PY{n}{count} \PY{o}{+} \PY{l+m+mi}{1}
+             \PY{k}{if} \PY{n}{count} \PY{o}{\PYZgt{}} \PY{o}{.}\PY{l+m+mi}{2}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{data\PYZus{}longbeach} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+                 \PY{n}{data\PYZus{}switzerland} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+                 \PY{n}{j} \PY{o}{=} \PY{n}{j}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+             \PY{n}{j} \PY{o}{=} \PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{}now try to fill in the nan value}
+         \PY{c+c1}{\PYZsh{}what i do is to replace the \PYZsq{}\PYZhy{}9\PYZsq{} with the median value of the dataset}
+         \PY{c+c1}{\PYZsh{}first get the non nan value }
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{29}\PY{p}{)}\PY{p}{:}
+             \PY{n}{count} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{data\PYZus{}longbeach}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{!=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{9}\PY{p}{:}
+                     \PY{n}{count}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+             \PY{n}{median\PYZus{}count} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{median}\PY{p}{(}\PY{n}{count}\PY{p}{)}
+             \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{data\PYZus{}longbeach}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{o}{\PYZhy{}}\PY{l+m+mi}{9}\PY{p}{:}
+                     \PY{n}{data\PYZus{}longbeach}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{median\PYZus{}count}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{c+c1}{\PYZsh{}fill the nan}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{29}\PY{p}{)}\PY{p}{:}
+             \PY{n}{count} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{data\PYZus{}switzerland}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{!=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{9}\PY{p}{:}
+                     \PY{n}{count}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+             \PY{n}{median\PYZus{}count} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{median}\PY{p}{(}\PY{n}{count}\PY{p}{)}
+             \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{data\PYZus{}switzerland}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{o}{\PYZhy{}}\PY{l+m+mi}{9}\PY{p}{:}
+                     \PY{n}{data\PYZus{}switzerland}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{median\PYZus{}count}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{data\PYZus{}switzerland}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} (123, 29)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}58}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{metrics}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{ensemble} \PY{k}{import} \PY{n}{ExtraTreesClassifier}
+         \PY{n}{model} \PY{o}{=} \PY{n}{ExtraTreesClassifier}\PY{p}{(}\PY{p}{)}
+         \PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{,} \PY{n}{y\PYZus{}longbeach}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} display the relative importance of each attribute}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{model}\PY{o}{.}\PY{n}{feature\PYZus{}importances\PYZus{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 0.03700573  0.          0.0421698   0.00389929  0.00351083  0.02612659
+  0.01198852  0.01574079  0.02628459  0.02068835  0.04740279  0.03979553
+  0.03455217  0.05454888  0.11275427  0.07279462  0.0126741   0.12859227
+  0.0099376   0.05078333  0.01669613  0.11957655  0.02137998  0.
+  0.00240127  0.00527585  0.03168175  0.01246731  0.03927111]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{metrics}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{ensemble} \PY{k}{import} \PY{n}{ExtraTreesClassifier}
+         \PY{n}{model} \PY{o}{=} \PY{n}{ExtraTreesClassifier}\PY{p}{(}\PY{p}{)}
+         \PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{,} \PY{n}{y\PYZus{}switzerland}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} display the relative importance of each attribute}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{model}\PY{o}{.}\PY{n}{feature\PYZus{}importances\PYZus{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 0.05655877  0.          0.0534585   0.00976884  0.02108864  0.01780191
+  0.01599535  0.02960963  0.          0.01554358  0.04644319  0.03660003
+  0.01888644  0.0510472   0.08182007  0.05061466  0.04037107  0.07963203
+  0.07313792  0.03290333  0.0264496   0.07768825  0.04798774  0.00952367
+  0.00089713  0.0059221   0.01235953  0.0344929   0.05339792]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{feature\PYZus{}selection} \PY{k}{import} \PY{n}{RFE}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LogisticRegression}
+         \PY{n}{model} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} create the RFE model and select 3 attributes}
+         \PY{n}{rfe} \PY{o}{=} \PY{n}{RFE}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{rfe} \PY{o}{=} \PY{n}{rfe}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{,} \PY{n}{y\PYZus{}longbeach}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} summarize the selection of the attributes}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{rfe}\PY{o}{.}\PY{n}{support\PYZus{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{rfe}\PY{o}{.}\PY{n}{ranking\PYZus{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[False False False  True  True  True  True  True False False False False
+ False  True  True  True  True  True  True  True  True  True  True  True
+  True  True False  True  True]
+[ 8 10  7  1  1  1  1  1  9  3  4  6  5  1  1  1  1  1  1  1  1  1  1  1  1
+  1  2  1  1]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{feature\PYZus{}selection} \PY{k}{import} \PY{n}{RFE}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LogisticRegression}
+         \PY{n}{model} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} create the RFE model and select 3 attributes}
+         \PY{n}{rfe} \PY{o}{=} \PY{n}{RFE}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{rfe} \PY{o}{=} \PY{n}{rfe}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{,} \PY{n}{y\PYZus{}switzerland}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} summarize the selection of the attributes}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{rfe}\PY{o}{.}\PY{n}{support\PYZus{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{rfe}\PY{o}{.}\PY{n}{ranking\PYZus{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[False False False  True  True  True  True  True False False False False
+ False  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True False]
+[ 8 10  5  1  1  1  1  1  9  2  3  7  4  1  1  1  1  1  1  1  1  1  1  1  1
+  1  1  1  6]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}62}]:} \PY{c+c1}{\PYZsh{}pick up 15 important variable based on train set}
+         \PY{n}{X\PYZus{}longbeach}\PY{p}{,} \PY{n}{X\PYZus{}switzerland} \PY{o}{=} \PY{n}{attribute\PYZus{}selection}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{,} \PY{n}{y\PYZus{}longbeach}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{,} \PY{n}{data\PYZus{}switzerland}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} \PY{c+c1}{\PYZsh{}model}
+         \PY{n}{result\PYZus{}log}\PY{p}{,} \PY{n}{result\PYZus{}nb}\PY{p}{,} \PY{n}{result\PYZus{}knn}\PY{p}{,} \PY{n}{result\PYZus{}cart}\PY{p}{,} \PY{n}{result\PYZus{}svm} \PY{o}{=} \PY{n}{modeling}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{X\PYZus{}longbeach}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{,}\PY{n}{y\PYZus{}longbeach}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{X\PYZus{}switzerland}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{,}\PY{n}{y\PYZus{}switzerland}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{metrics}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}switzerland}\PY{p}{,} \PY{n}{result\PYZus{}log}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}switzerland}\PY{p}{,} \PY{n}{result\PYZus{}nb}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}switzerland}\PY{p}{,} \PY{n}{result\PYZus{}knn}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}switzerland}\PY{p}{,} \PY{n}{result\PYZus{}cart}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}switzerland}\PY{p}{,} \PY{n}{result\PYZus{}svm}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[ 8  0  0  0  0]
+ [48  0  0  0  0]
+ [32  0  0  0  0]
+ [30  0  0  0  0]
+ [ 5  0  0  0  0]]
+[[ 0  0  0  8  0]
+ [ 0  6  0 42  0]
+ [ 0  3  0 29  0]
+ [ 0  0  0 30  0]
+ [ 1  0  0  2  2]]
+[[ 4  0  4  0  0]
+ [11  0 37  0  0]
+ [ 4  0 20  8  0]
+ [ 0  0 10 20  0]
+ [ 0  0  4  1  0]]
+[[ 8  0  0  0  0]
+ [ 1 47  0  0  0]
+ [ 0  6 23  3  0]
+ [ 0  0  7 23  0]
+ [ 0  1  2  0  2]]
+[[ 0  0  0  8  0]
+ [ 0  0  0 48  0]
+ [ 0  0  0 32  0]
+ [ 0  0  0 30  0]
+ [ 0  0  0  5  0]]
+
+    \end{Verbatim}
+
+     the result is bad. the logistic and svm doesn't work at all ! I think
+CART model somehow work this time, and the result is pretty nice, but i
+think this is just luck.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}65}]:} \PY{c+c1}{\PYZsh{}to draw the roc curve, let\PYZsq{}s separate the prediction into two category, one is range from 0 to 2, representing }
+         \PY{c+c1}{\PYZsh{}no or light heart disease; 3 and 4 are in another catergory representing heart disease}
+         \PY{n}{log\PYZus{}score} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{result\PYZus{}log}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{nb\PYZus{}score} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{result\PYZus{}nb}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{knn\PYZus{}score} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{result\PYZus{}knn}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{cart\PYZus{}score} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{result\PYZus{}cart}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{svm\PYZus{}score} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{result\PYZus{}svm}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}66}]:} \PY{c+c1}{\PYZsh{}also need to modify the label, 0\PYZti{}2 is negative while 3\PYZti{}4 is positive}
+         \PY{n}{roc\PYZus{}y\PYZus{}switzerland} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y\PYZus{}switzerland}\PY{p}{)}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y\PYZus{}switzerland}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{y\PYZus{}switzerland}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0} \PY{o+ow}{or} \PY{n}{y\PYZus{}switzerland}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1} \PY{o+ow}{or} \PY{n}{y\PYZus{}switzerland}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{2}\PY{p}{:}
+                 \PY{n}{roc\PYZus{}y\PYZus{}switzerland}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{roc\PYZus{}y\PYZus{}switzerland}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}67}]:} \PY{c+c1}{\PYZsh{}the roc is on the top\PYZhy{}left corner}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{num}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{model\PYZus{}comparasion}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{18}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{321}\PY{p}{)}
+         \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{roc\PYZus{}y\PYZus{}switzerland}\PY{p}{,} \PY{n}{log\PYZus{}score}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{322}\PY{p}{)}
+         \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{roc\PYZus{}y\PYZus{}switzerland}\PY{p}{,} \PY{n}{nb\PYZus{}score}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{323}\PY{p}{)}
+         \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{roc\PYZus{}y\PYZus{}switzerland}\PY{p}{,} \PY{n}{knn\PYZus{}score}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{324}\PY{p}{)}
+         \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{roc\PYZus{}y\PYZus{}switzerland}\PY{p}{,} \PY{n}{cart\PYZus{}score}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{325}\PY{p}{)}
+         \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{roc\PYZus{}y\PYZus{}switzerland}\PY{p}{,} \PY{n}{svm\PYZus{}score}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}sth strange happen to svm\PYZus{}roc}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+     the roc curve and auc prove my opinion for confusion matrix, SVM
+doesn't even make sense here. In this big dataset, CART perform best. In
+conclusion, if i need to pick up a model for both small dataset and big
+dataset, i could choose KNN, since it could work in both big and small
+dataset
+
+     For the big dataset, i didn't do the standarlization, the result was
+even worse with standarlization. Also, i think there are too many nan,
+which affects the performance of model. What's worse, in fact, the
+samples of these two dataset are not 'big', not enough to support it to
+train with so much variable. Another idea is that i think i should
+partly repeat the samples of state 3 and 4, because there aren't enough
+samples for these two situations, not even weight for them.
+
+     one thing i feel confuse is that why the CART works bad on the small
+dataset but works not that bad in big data set ?
+
+    \section{PART 3 addendum}\label{part-3-addendum}
+
+    let's see how models performce if i set label = 0 if state is 0 and
+label = 1 if state isn't 0. Aslo, this time i train and test on the same
+dataset. 80\% on the train set and 20\% on the test set
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{c+c1}{\PYZsh{}relabel}
+         \PY{n}{y\PYZus{}longbeach\PYZus{}new} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y\PYZus{}longbeach}\PY{p}{)}\PY{p}{)}
+         \PY{n}{y\PYZus{}switzerland\PYZus{}new} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y\PYZus{}switzerland}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y\PYZus{}longbeach}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{y\PYZus{}longbeach}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                 \PY{n}{y\PYZus{}longbeach\PYZus{}new}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{y\PYZus{}longbeach\PYZus{}new}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y\PYZus{}switzerland}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{y\PYZus{}switzerland}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                 \PY{n}{y\PYZus{}switzerland\PYZus{}new}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{y\PYZus{}switzerland\PYZus{}new}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}84}]:} \PY{c+c1}{\PYZsh{}standardize data}
+         \PY{n}{data\PYZus{}longbeach} \PY{o}{=} \PY{n}{preprocessing}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{)}
+         \PY{n}{data\PYZus{}switzerland} \PY{o}{=} \PY{n}{preprocessing}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}112}]:} \PY{n}{num1} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{o}{.}\PY{l+m+mi}{5}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}longbeach}\PY{p}{)}\PY{p}{)}
+          \PY{n}{num2} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{o}{.}\PY{l+m+mi}{5}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}switzerland}\PY{p}{)}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}break the dataset}
+          \PY{n}{data\PYZus{}longbeach\PYZus{}train} \PY{o}{=} \PY{n}{data\PYZus{}longbeach}\PY{p}{[}\PY{p}{:}\PY{n}{num1}\PY{p}{]}
+          \PY{n}{data\PYZus{}longbeach\PYZus{}test} \PY{o}{=} \PY{n}{data\PYZus{}longbeach}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n}{num1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}\PY{p}{]}
+          \PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}train} \PY{o}{=} \PY{n}{y\PYZus{}longbeach\PYZus{}new}\PY{p}{[}\PY{p}{:}\PY{n}{num1}\PY{p}{]}
+          \PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}test} \PY{o}{=} \PY{n}{y\PYZus{}longbeach\PYZus{}new}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n}{num1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}\PY{p}{]}
+          
+          \PY{n}{data\PYZus{}switzerland\PYZus{}train} \PY{o}{=} \PY{n}{data\PYZus{}switzerland}\PY{p}{[}\PY{p}{:}\PY{n}{num2}\PY{p}{]}
+          \PY{n}{data\PYZus{}switzerland\PYZus{}test} \PY{o}{=} \PY{n}{data\PYZus{}switzerland}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n}{num2}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}\PY{p}{]}
+          \PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}train} \PY{o}{=} \PY{n}{y\PYZus{}switzerland\PYZus{}new}\PY{p}{[}\PY{p}{:}\PY{n}{num2}\PY{p}{]}
+          \PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}test} \PY{o}{=} \PY{n}{y\PYZus{}switzerland\PYZus{}new}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n}{num2}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}113}]:} \PY{c+c1}{\PYZsh{}pick up 15 important variable based on train set}
+          \PY{n}{X\PYZus{}switzerland\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}switzerland\PYZus{}test} \PY{o}{=} \PY{n}{attribute\PYZus{}selection}\PY{p}{(}\PY{n}{data\PYZus{}switzerland\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}train}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{,} \PY{n}{data\PYZus{}switzerland\PYZus{}test}\PY{p}{)}
+          \PY{n}{X\PYZus{}longbeach\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}longbeach\PYZus{}test} \PY{o}{=} \PY{n}{attribute\PYZus{}selection}\PY{p}{(}\PY{n}{data\PYZus{}longbeach\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}train}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{,} \PY{n}{data\PYZus{}longbeach\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}144}]:} \PY{c+c1}{\PYZsh{}model}
+          \PY{n}{result\PYZus{}log}\PY{p}{,} \PY{n}{result\PYZus{}nb}\PY{p}{,} \PY{n}{result\PYZus{}knn}\PY{p}{,} \PY{n}{result\PYZus{}cart}\PY{p}{,} \PY{n}{result\PYZus{}svm} \PY{o}{=} \PY{n}{modeling}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{X\PYZus{}longbeach\PYZus{}train}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{,}\PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}train}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{X\PYZus{}longbeach\PYZus{}test}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{,}\PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}145}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{metrics}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{result\PYZus{}log}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{result\PYZus{}nb}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{result\PYZus{}knn}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{result\PYZus{}cart}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{result\PYZus{}svm}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[25  0]
+ [16 58]]
+[[23  2]
+ [ 3 71]]
+[[24  1]
+ [13 61]]
+[[24  1]
+ [ 3 71]]
+[[20  5]
+ [ 2 72]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}146}]:} \PY{c+c1}{\PYZsh{}to draw the roc curve, let\PYZsq{}s separate the prediction into two category, one is range from 0 to 2, representing }
+          \PY{c+c1}{\PYZsh{}no or light heart disease; 3 and 4 are in another catergory representing heart disease}
+          \PY{n}{log\PYZus{}score} \PY{o}{=} \PY{n}{result\PYZus{}log}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+          \PY{n}{nb\PYZus{}score} \PY{o}{=} \PY{n}{result\PYZus{}nb}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+          \PY{n}{knn\PYZus{}score} \PY{o}{=} \PY{n}{result\PYZus{}knn}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+          \PY{n}{cart\PYZus{}score} \PY{o}{=} \PY{n}{result\PYZus{}cart}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+          \PY{n}{svm\PYZus{}score} \PY{o}{=} \PY{n}{result\PYZus{}svm}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}148}]:} \PY{c+c1}{\PYZsh{}the roc is on the top\PYZhy{}left corner}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{num}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{model}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{18}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{321}\PY{p}{)}
+          \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{log\PYZus{}score}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{322}\PY{p}{)}
+          \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{nb\PYZus{}score}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{323}\PY{p}{)}
+          \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{knn\PYZus{}score}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{324}\PY{p}{)}
+          \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{cart\PYZus{}score}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{325}\PY{p}{)}
+          \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{y\PYZus{}longbeach\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{svm\PYZus{}score}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}sth strange happen to svm\PYZus{}roc}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_55_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    sometimes, the fpr and tpr value is incomplete with small dataset.
+Hence, the roc curve of knn and cart looks incomplete on the lift side,
+it doesn't connect the (0,0).
+
+    the result looks good if i just train and test on longbeach dataset.
+what about switezerland ?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}118}]:} \PY{n}{result\PYZus{}log}\PY{p}{,} \PY{n}{result\PYZus{}nb}\PY{p}{,} \PY{n}{result\PYZus{}knn}\PY{p}{,} \PY{n}{result\PYZus{}cart}\PY{p}{,} \PY{n}{result\PYZus{}svm} \PY{o}{=} \PY{n}{modeling}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{X\PYZus{}switzerland\PYZus{}train}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{,}\PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}train}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{X\PYZus{}switzerland\PYZus{}test}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{,}\PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}119}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{result\PYZus{}log}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{result\PYZus{}nb}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{result\PYZus{}knn}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{result\PYZus{}cart}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{result\PYZus{}svm}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[ 0  1]
+ [ 5 55]]
+[[ 0  1]
+ [ 0 60]]
+[[ 0  1]
+ [ 3 57]]
+[[ 0  1]
+ [ 2 58]]
+[[ 0  1]
+ [ 0 60]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}128}]:} \PY{n}{log\PYZus{}score} \PY{o}{=} \PY{n}{result\PYZus{}log}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+          \PY{n}{nb\PYZus{}score} \PY{o}{=} \PY{n}{result\PYZus{}nb}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+          \PY{n}{knn\PYZus{}score} \PY{o}{=} \PY{n}{result\PYZus{}knn}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+          \PY{n}{cart\PYZus{}score} \PY{o}{=} \PY{n}{result\PYZus{}cart}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+          \PY{n}{svm\PYZus{}score} \PY{o}{=} \PY{n}{result\PYZus{}svm}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}135}]:} \PY{c+c1}{\PYZsh{}the roc is on the top\PYZhy{}left corner}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{num}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{model2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{18}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{321}\PY{p}{)}
+          \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{log\PYZus{}score}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{322}\PY{p}{)}
+          \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{nb\PYZus{}score}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{323}\PY{p}{)}
+          \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{knn\PYZus{}score}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{324}\PY{p}{)}
+          \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{cart\PYZus{}score}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{325}\PY{p}{)}
+          \PY{n}{plot\PYZus{}roc\PYZus{}curve}\PY{p}{(}\PY{n}{y\PYZus{}switzerland\PYZus{}new\PYZus{}test}\PY{p}{,} \PY{n}{svm\PYZus{}score}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}sth strange happen to svm\PYZus{}roc}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_61_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    look strange that cart's roc curve would be awful this time, but its
+confusion matrix isn't
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
